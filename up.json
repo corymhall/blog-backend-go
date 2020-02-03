@@ -1,0 +1,26 @@
+{
+  "name": "pp-blog-api",
+  "hooks": {
+    "build": "GOOS=linux GOARCH=amd64 go build -o server ./cmd/api",
+    "clean": "rm -rf server"
+  },
+  "regions": ["us-east-2"],
+  "lambda": {
+    "memory": 512,
+    "role": "REPLACE_ME"
+  },
+  "logs": {
+    "stdout": "info",
+    "stderr": "info"
+  },
+  "stages": {
+    "production": {
+      "domain": "REPLACE_ME",
+      "zone": "REPLACE_ME"
+    },
+    "staging": {
+      "domain": "REPLACE_ME",
+      "zone": "REPLACE_ME"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+  dynamodb:
+    container_name: dynamodb
+    image: amazon/dynamodb-local:latest
+    entrypoint: java
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /data"
+    restart: always
+    volumes:
+      - dynamodb-data:/data
+    ports:
+      - "8000:8000"
+ 
+volumes:
+  dynamodb-data:
+    external: true
